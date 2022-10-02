@@ -14,6 +14,7 @@ public class AbilityData : ScriptableObject
     [Header("Activation")]
     public TriggerType TriggerType;
     public float Cooldown;
+    public bool CanActivateWithoutTarget;
 
     [Header("Methods")]
     public AbilityMethods ActivationMethod;

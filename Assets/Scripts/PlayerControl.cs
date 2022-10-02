@@ -12,6 +12,7 @@ public class PlayerControl : SingletonMB<PlayerControl>
     [field: SerializeField] public float SugarMax { get; private set; }
 
     public float Power = 0;
+    public float Shield = 0;
 
     public AbilityData[] StarterAbilities;
     public Ability[] Abilities = new Ability[4];
@@ -44,16 +45,23 @@ public class PlayerControl : SingletonMB<PlayerControl>
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
+                if (Abilities[0] != null && Abilities[0].IsReady)
                 {
-                    if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
+                    if (Abilities[0].Data.CanActivateWithoutTarget)
                     {
-                        if (Abilities[0] != null && Abilities[0].IsReady)
+                        Abilities[0].Activate();
+                    }
+                    else
+                    {
+                        Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit;
+
+                        if (Physics.Raycast(ray, out hit))
                         {
-                            Abilities[0].Activate(enemy);
+                            if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
+                            {
+                                Abilities[0].Activate(enemy);
+                            }
                         }
                     }
                 }
@@ -134,6 +142,21 @@ public class PlayerControl : SingletonMB<PlayerControl>
 
     public void AddHealth(float value)
     {
+        if (value < 0 && Shield > 0)
+        {
+            if (Shield >= value)
+            {
+                Shield -= value;
+                UIControl.Instance.SetHealth(Health);
+                return;
+            }
+            else
+            {
+                value -= Shield;
+                Shield = 0;
+            }
+        }
+
         Health = Mathf.Min(Health + value, HealthMax);
         UIControl.Instance.SetHealth(Health);
 

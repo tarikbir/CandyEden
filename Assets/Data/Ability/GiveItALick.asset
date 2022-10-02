@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ec9930714c0a1e4aa6c3dc300761efc, type: 3}
-  m_Name: SUCC
+  m_Name: GiveItALick
   m_EditorClassIdentifier: 
-  Name: SUCC
-  Description: '<b>Active:</b> Deals BILLIONS OF D...
+  Name: Give It A Lick
+  Description: '<b>Active:</b> Deal <color=red>5</color> damage to target and heal
+    yourself for double the amount.
 
-    <b>Passive:</b> Deals
-    BILLIONS OF D... (BUT RANDOM)'
-  Icon: {fileID: 21300000, guid: 15436a3abd0961e4b88b63cf163de8a7, type: 3}
-  Tier: 2
+    <b>Passive:</b> Heal yourself for <color=red>15</color>,
+    periodically.'
+  Icon: {fileID: 21300000, guid: c50c971df3733c44e832dccf277a2ce7, type: 3}
+  Tier: 0
   TriggerType: 0
-  Cooldown: 0.4
-  ActivationMethod: 3
+  Cooldown: 3.7
+  ActivationMethod: 1

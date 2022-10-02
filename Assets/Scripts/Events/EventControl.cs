@@ -2,9 +2,6 @@ using Sigtrap.Relays;
 
 public class EventControl : SingletonMB<EventControl>
 {
-    public Relay GameStarted = new();
-    public Relay GameEnded = new();
-
     public Relay<Ability, int> OnAbilityEquipped = new();
     public Relay<Ability, bool> OnAbilityGained = new();
 

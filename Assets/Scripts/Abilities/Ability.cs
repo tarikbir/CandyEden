@@ -114,12 +114,12 @@ public class Ability
 		{
 			AbilityMethods.Chomp => new ChompMethod(10),
             AbilityMethods.TwoHands => new TwoHandMethod(2),
-            AbilityMethods.GiveItALick => new GiveItALickMethod(4),
+            AbilityMethods.GiveItALick => new GiveItALickMethod(5),
             AbilityMethods.ExpressYourself => new ExpressYourselfMethod(2),
             AbilityMethods.SUCC => new SUCCMethod(5),
             AbilityMethods.Shield => new ShieldMethod(5),
             AbilityMethods.Eye => new EyeMethod(1),
-            AbilityMethods.DrinkUp => new DrinkUpMethod(20),
+            AbilityMethods.DrinkUp => new DrinkUpMethod(10),
             _ => null
 		};
 	}
@@ -231,11 +231,14 @@ public class SUCCMethod : AbilityMethod
     {
         if (controlType == ControlType.Passive)
         {
-            PlayerControl.Instance.AddHealth(Power * 4);
+            enemy = WaveControl.Instance.GetRandomEnemy();
         }
         if (enemy == null) return;
+
+        //UnityEngine.GameObject.Instantiate(PlayerControl.Instance.ChompVFX, enemy.transform.position + UnityEngine.Vector3.up * 2, UnityEngine.Quaternion.identity);
+
         enemy.GetDamage(Power);
-        PlayerControl.Instance.AddHealth(Power * 2);
+        PlayerControl.Instance.Power++;
     }
 }
 
@@ -245,6 +248,17 @@ public class ShieldMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        if (controlType == ControlType.Passive)
+        {
+            PlayerControl.Instance.Shield += Power;
+            PlayerControl.Instance.AddHealth(Power);
+        }
+        else
+        {
+            PlayerControl.Instance.Shield += Power * 3;
+        }
+
+        //UnityEngine.GameObject.Instantiate(PlayerControl.Instance.ChompVFX, enemy.transform.position + UnityEngine.Vector3.up * 2, UnityEngine.Quaternion.identity);
     }
 }
 
@@ -254,6 +268,15 @@ public class EyeMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        if (controlType == ControlType.Passive)
+        {
+            //decrease attacks of enemies
+            //WaveControl.Instance
+        }
+        else
+        {
+            //remove rage from deck.
+        }
     }
 }
 
@@ -263,6 +286,16 @@ public class DrinkUpMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        if (controlType == ControlType.Passive)
+        {
+            PlayerControl.Instance.AddHealth(Power * 2);
+            PlayerControl.Instance.AddSugar(Power * 2);
+        }
+        else
+        {
+            PlayerControl.Instance.AddHealthMax(Power);
+            PlayerControl.Instance.AddSugarMax(Power);
+        }
     }
 }
 

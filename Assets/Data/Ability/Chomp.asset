@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ec9930714c0a1e4aa6c3dc300761efc, type: 3}
-  m_Name: EatWithTwoHands
+  m_Name: Chomp
   m_EditorClassIdentifier: 
-  Name: Eat With Two Hands
-  Description: '<b>Active:</b> Deals <color=red>5</color> damage to target and eats
+  Name: Chomp
+  Description: '<b>Active:</b> Deal <color=red>10</color> damage to target and eat
     them if they are killed this way.
 
-    <b>Passive:</b> Deals <color=red>10</color>
-    damage to a random enemy whenever an ability is activated.'
-  Icon: {fileID: 21300000, guid: aeed7f037f249c447a0462f8d6508559, type: 3}
+    <b>Passive:</b> Deal <color=red>10</color>
+    damage to a random enemy periodically and eat them if they are killed this way.'
+  Icon: {fileID: 21300000, guid: 0bf12461ec8143b42803682a2f585741, type: 3}
   Tier: 0
-  TriggerType: 2
+  TriggerType: 0
   Cooldown: 2
   ActivationMethod: 0

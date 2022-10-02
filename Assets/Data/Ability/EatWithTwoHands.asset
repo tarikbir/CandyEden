@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ec9930714c0a1e4aa6c3dc300761efc, type: 3}
-  m_Name: ExpressYourself
+  m_Name: EatWithTwoHands
   m_EditorClassIdentifier: 
-  Name: Express Yourself
-  Description: '<b>Active:</b> Deals <color=red>5</color> damage to target and eats
-    them if they are killed this way.
+  Name: Eat With Two Hands
+  Description: '<b>Active:</b> Deal <color=red>6 / 10</color> damage to target if
+    this is equipped in left / right hand.
 
-    <b>Passive:</b> Deals <color=red>10</color>
-    damage to a random enemy whenever an ability is activated.'
-  Icon: {fileID: 21300000, guid: c008dd98b9a640e40b85a92f1d37abb7, type: 3}
+    <b>Passive:</b> Deal <color=red>2</color>
+    damage to a random enemy each time an ability is used.'
+  Icon: {fileID: 21300000, guid: aeed7f037f249c447a0462f8d6508559, type: 3}
   Tier: 0
-  TriggerType: 0
-  Cooldown: 2
+  TriggerType: 2
+  Cooldown: 1.4
   ActivationMethod: 2

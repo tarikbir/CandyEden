@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db31560e4d94cf74eb283c4694ef4ff2, type: 3}
+  m_Name: Power Up!
+  m_EditorClassIdentifier: 
+  Name: Power Up!
+  Description: You start weightlifting out of nowhere. You gain a permanent bonus
+    to your power.
+  CardImage: {fileID: 21300000, guid: 2e4ccb7e46fcadb4db8ff967c5ee370b, type: 3}
+  EventType: 3
+  IsOneOfAKind: 0

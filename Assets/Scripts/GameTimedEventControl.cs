@@ -24,7 +24,6 @@ public class GameTimedEventControl : SingletonMB<GameTimedEventControl>
         EventControl.Instance.OnTimedEvent.Dispatch();
 
         GameManager.Instance.PauseTimers();
-        //
 
         //do something
     }

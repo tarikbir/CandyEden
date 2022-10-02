@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: DrinkUp
   m_EditorClassIdentifier: 
   Name: Drink Up
-  Description: '<b>Active:</b> Deals <color=red>5</color> damage to target and eats
-    them if they are killed this way.
+  Description: '<b>Active:</b> Increase your maximum health and sugar by <color:red>20</color>.
 
-    <b>Passive:</b> Deals <color=red>10</color>
-    damage to a random enemy whenever an ability is activated.'
+    <b>Passive:</b>
+    Increase your health and sugar by <color:red>10</color> when you get hit.'
   Icon: {fileID: 21300000, guid: ceab9e3b4e00dcf44a9827d9151736d9, type: 3}
   Tier: 1
   TriggerType: 1
-  Cooldown: 5
-  ActivationMethod: 6
+  Cooldown: 5.09
+  CanActivateWithoutTarget: 1
+  ActivationMethod: 7
