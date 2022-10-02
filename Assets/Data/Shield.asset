@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ec9930714c0a1e4aa6c3dc300761efc, type: 3}
+  m_Name: Shield
+  m_EditorClassIdentifier: 
+  Name: Shield
+  Description: '<b>Active:</b> Deals <color=red>5</color> damage to target and eats
+    them if they are killed this way.
+
+    <b>Passive:</b> Deals <color=red>10</color>
+    damage to a random enemy whenever an ability is activated.'
+  Icon: {fileID: 21300000, guid: 00947d9f6fbc0b04880c41582a4c4f4a, type: 3}
+  Tier: 1
+  TriggerType: 2
+  Cooldown: 2
+  ActivationMethod: 4
