@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 399c328100008ba43933180fc46cc71e
+  - enabled: 1
     path: Assets/Scenes/Main Game Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Game Art Scene.unity
+    path: Assets/Scenes/You Dead.unity
     guid: b822b2673e313974d854600f6a648ebe
+  - enabled: 1
+    path: Assets/Scenes/You Win.unity
+    guid: 07f87ec3f5f3af64da6a107610b38449
   m_configObjects: {}

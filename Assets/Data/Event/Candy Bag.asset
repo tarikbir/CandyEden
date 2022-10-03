@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Candy Bag
   m_EditorClassIdentifier: 
   Name: Candy Bag
-  Description: Found a candy bag! Your sugar increased by 30.
+  Description: Found a candy bag with 30 candies!
   CardImage: {fileID: 21300000, guid: 8ac1de50b84ccac4d988629295e87879, type: 3}
   EventType: 2
   IsOneOfAKind: 0

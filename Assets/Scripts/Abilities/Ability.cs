@@ -115,10 +115,10 @@ public class Ability
 			AbilityMethods.Chomp => new ChompMethod(10),
             AbilityMethods.TwoHands => new TwoHandMethod(2),
             AbilityMethods.GiveItALick => new GiveItALickMethod(5),
-            AbilityMethods.ExpressYourself => new ExpressYourselfMethod(2),
+            AbilityMethods.ExpressYourself => new ExpressYourselfMethod(3),
             AbilityMethods.SUCC => new SUCCMethod(5),
             AbilityMethods.Shield => new ShieldMethod(5),
-            AbilityMethods.Eye => new EyeMethod(1),
+            AbilityMethods.Eye => new EyeMethod(5),
             AbilityMethods.DrinkUp => new DrinkUpMethod(10),
             _ => null
 		};
@@ -131,7 +131,7 @@ public abstract class AbilityMethod
     
     public AbilityMethod(float powerOverride = 10)
     {
-        Power = powerOverride + PlayerControl.Instance.Power;
+        Power = powerOverride;
     }
 
     public abstract void Invoke(ControlType controlType, Enemy enemy = null);
@@ -143,6 +143,7 @@ public class ChompMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        float currentPower = Power + PlayerControl.Instance.Power;
         if (controlType == ControlType.Passive)
         {
             enemy = WaveControl.Instance.GetRandomEnemy();
@@ -150,8 +151,9 @@ public class ChompMethod : AbilityMethod
         if (enemy == null) return;
 
         UnityEngine.GameObject.Instantiate(PlayerControl.Instance.ChompVFX, enemy.transform.position + UnityEngine.Vector3.up * 2, UnityEngine.Quaternion.identity);
+        AudioControl.Instance.PlaySound("Chomp");
 
-        if (enemy.GetDamage(Power))
+        if (enemy.GetDamage(currentPower))
         {
             PlayerControl.Instance.AddSugar(enemy.SugarValue);
         }
@@ -164,6 +166,7 @@ public class TwoHandMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        float currentPower = Power + PlayerControl.Instance.Power;
         if (controlType == ControlType.Passive)
         {
             enemy = WaveControl.Instance.GetRandomEnemy();
@@ -171,7 +174,7 @@ public class TwoHandMethod : AbilityMethod
         if (enemy == null) return;
 
         //UnityEngine.GameObject.Instantiate(PlayerControl.Instance.ChompVFX, enemy.transform.position + UnityEngine.Vector3.up * 2, UnityEngine.Quaternion.identity);
-        float damage = Power;
+        float damage = currentPower;
         if (controlType == ControlType.LeftClick)
         {
             damage *= 3;
@@ -182,6 +185,7 @@ public class TwoHandMethod : AbilityMethod
         }
 
         enemy.GetDamage(damage);
+        AudioControl.Instance.PlaySound("TwoHand");
     }
 }
 
@@ -191,13 +195,15 @@ public class GiveItALickMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        float currentPower = Power + PlayerControl.Instance.Power;
         if (controlType == ControlType.Passive)
         {
-            PlayerControl.Instance.AddHealth(Power * 3);
+            PlayerControl.Instance.AddHealth(currentPower * 3);
         }
         if (enemy == null) return;
-        enemy.GetDamage(Power);
-        PlayerControl.Instance.AddHealth(Power * 2);
+        enemy.GetDamage(currentPower);
+        PlayerControl.Instance.AddHealth(currentPower * 2);
+        AudioControl.Instance.PlaySound("GiveItALick");
     }
 }
 
@@ -207,19 +213,19 @@ public class ExpressYourselfMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        float currentPower = Power + PlayerControl.Instance.Power;
         if (controlType == ControlType.Passive)
         {
             enemy = WaveControl.Instance.GetRandomEnemy();
             if (enemy == null) return;
-            enemy.ShittedOn(Power);
+            enemy.ShittedOn(currentPower / 2);
         }
         else
         {
             if (enemy == null) return;
-            enemy.ShittedOn(Power / 2);
+            enemy.ShittedOn(currentPower);
         }
-
-        //UnityEngine.GameObject.Instantiate(PlayerControl.Instance.ChompVFX, enemy.transform.position + UnityEngine.Vector3.up * 2, UnityEngine.Quaternion.identity);
+        AudioControl.Instance.PlaySound("ExpressYourself");
     }
 }
 
@@ -229,6 +235,7 @@ public class SUCCMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        float currentPower = Power + PlayerControl.Instance.Power;
         if (controlType == ControlType.Passive)
         {
             enemy = WaveControl.Instance.GetRandomEnemy();
@@ -237,7 +244,7 @@ public class SUCCMethod : AbilityMethod
 
         //UnityEngine.GameObject.Instantiate(PlayerControl.Instance.ChompVFX, enemy.transform.position + UnityEngine.Vector3.up * 2, UnityEngine.Quaternion.identity);
 
-        enemy.GetDamage(Power);
+        enemy.GetDamage(currentPower);
         PlayerControl.Instance.Power++;
     }
 }
@@ -248,16 +255,17 @@ public class ShieldMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        float currentPower = Power + PlayerControl.Instance.Power;
         if (controlType == ControlType.Passive)
         {
-            PlayerControl.Instance.Shield += Power;
-            PlayerControl.Instance.AddHealth(Power);
+            PlayerControl.Instance.Shield += currentPower;
+            PlayerControl.Instance.AddHealth(currentPower);
         }
         else
         {
-            PlayerControl.Instance.Shield += Power * 3;
+            PlayerControl.Instance.Shield += currentPower * 3;
         }
-
+        AudioControl.Instance.PlaySound("Shield");
         //UnityEngine.GameObject.Instantiate(PlayerControl.Instance.ChompVFX, enemy.transform.position + UnityEngine.Vector3.up * 2, UnityEngine.Quaternion.identity);
     }
 }
@@ -268,15 +276,25 @@ public class EyeMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        float currentPower = Power + PlayerControl.Instance.Power;
         if (controlType == ControlType.Passive)
         {
-            //decrease attacks of enemies
-            //WaveControl.Instance
+            foreach (var monster in WaveControl.Instance.CurrentMonsters)
+            {
+                monster.GetDamage(currentPower * 2);
+            }
         }
         else
         {
-            //remove rage from deck.
+            foreach (var monster in WaveControl.Instance.CurrentMonsters)
+            {
+                if (monster.GetDamage(currentPower))
+                {
+                    PlayerControl.Instance.Power += 1;
+                }
+            }
         }
+        AudioControl.Instance.PlaySound("Eye");
     }
 }
 
@@ -286,16 +304,18 @@ public class DrinkUpMethod : AbilityMethod
 
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
+        float currentPower = Power + PlayerControl.Instance.Power;
         if (controlType == ControlType.Passive)
         {
-            PlayerControl.Instance.AddHealth(Power * 2);
-            PlayerControl.Instance.AddSugar(Power * 2);
+            PlayerControl.Instance.AddHealth(currentPower * 2);
+            PlayerControl.Instance.AddSugar(currentPower * 2);
         }
         else
         {
-            PlayerControl.Instance.AddHealthMax(Power);
-            PlayerControl.Instance.AddSugarMax(Power);
+            PlayerControl.Instance.AddHealthMax(currentPower);
+            PlayerControl.Instance.AddSugarMax(currentPower);
         }
+        AudioControl.Instance.PlaySound("DrinkUp");
     }
 }
 

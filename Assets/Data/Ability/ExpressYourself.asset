@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: ExpressYourself
   m_EditorClassIdentifier: 
   Name: Express Yourself
-  Description: '<b>Active:</b> Delay target''s attack by <color=red>1</color> second.
+  Description: '<u>Active:</u> Delay target''s attack by <color=red>3</color> second.
 
-    <b>Passive:</b>
-    Delay a random enemy''s attack by <color=red>2</color> seconds each time an ability
-    is used.'
+    <u>Passive:</u>
+    Delay a random enemy''s attack by <color=red>1.5</color> seconds each time an
+    ability is used.'
   Icon: {fileID: 21300000, guid: c008dd98b9a640e40b85a92f1d37abb7, type: 3}
   Tier: 0
   TriggerType: 2
   Cooldown: 3.1
+  CanActivateWithoutTarget: 0
   ActivationMethod: 3

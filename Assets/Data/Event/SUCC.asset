@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db31560e4d94cf74eb283c4694ef4ff2, type: 3}
   m_Name: SUCC
   m_EditorClassIdentifier: 
-  Name: What Is This?
+  Name: WHAT T-
   Description: YOUR ABILITY STONKS
   CardImage: {fileID: 21300000, guid: e7daa18994ea45b4eb3003f5e0fd0fe2, type: 3}
   EventType: 4

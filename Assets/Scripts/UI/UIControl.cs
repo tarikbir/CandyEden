@@ -24,10 +24,11 @@ public class UIControl : SingletonMB<UIControl>
     [Header("Tooltip")]
     public TooltipControl Tooltip;
 
-    [Header("Tooltip")]
+    [Header("Wave")]
     public TextMeshProUGUI WaveText;
 
-    [Header("Timer")]
+    [Header("Event")]
+    public AbilityPickUIWindow AbilityPickUIWindow;
     public TextMeshProUGUI TimerText;
     public Image TimerFill;
 
@@ -43,6 +44,11 @@ public class UIControl : SingletonMB<UIControl>
         {
             Tooltip.UpdatePosition(Input.mousePosition);
         }
+    }
+
+    public void OpenAbilityPickPanel()
+    {
+        AbilityPickUIWindow.Open();
     }
 
     public void ToggleAbilityPanel()

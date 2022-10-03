@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec9930714c0a1e4aa6c3dc300761efc, type: 3}
   m_Name: Eye
   m_EditorClassIdentifier: 
-  Name: Foresight
-  Description: '<b>Active:</b> Remove RAGE from event deck, if it''s the next one.
+  Name: The Look
+  Description: '<u>Active:</u> Deal <color=red>5</color> damage to all enemies. If
+    any of them dies, gain power.
 
-    <b>Passive:</b>
-    Decrease attack of every enemy on screen by <color=red>1</color>.'
+    <u>Passive:</u> Deal <color=red>10</color>
+    damage to all enemies.'
   Icon: {fileID: 21300000, guid: 9ca7832363adff341aa3606e68730cb7, type: 3}
   Tier: 1
   TriggerType: 0
-  Cooldown: 7.4
+  Cooldown: 4.6
   CanActivateWithoutTarget: 1
   ActivationMethod: 6

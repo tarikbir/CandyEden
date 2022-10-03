@@ -21,6 +21,7 @@ public class Enemy : Billboard
     [SerializeField] private Sprite[] _enrageAnimationFrames;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private ProgressBar _healthBar;
+    [SerializeField] private GameObject _shitVFX;
     [SerializeField] private Projectile CandyPrefab;
 
     private int _animationIndex;
@@ -42,21 +43,21 @@ public class Enemy : Billboard
     public void ShittedOn(float timer)
     {
         _attackTimer.Pause();
-        Debug.Log($"{name} got shit on");
+        _shitVFX.gameObject.SetActive(true);
         Timer.Register(timer, ShitComplete, autoDestroyOwner: this);
     }
 
     private void ShitComplete()
     {
-        Debug.Log($"{name} got shit cleared");
+        _shitVFX.gameObject.SetActive(false);
         _attackTimer.Resume();
     }
 
     public void Die()
     {
-        _damageVFXTimer.Cancel();
-        _animationTimer.Cancel();
-        _attackTimer.Cancel();
+        _damageVFXTimer?.Cancel();
+        _animationTimer?.Cancel();
+        _attackTimer?.Cancel();
 
         WaveControl.Instance.CurrentMonsters.Remove(this);
 
@@ -128,5 +129,17 @@ public class Enemy : Billboard
     private void DamageFXTick(float time)
     {
         _spriteRenderer.color += Color.white * time * Time.deltaTime;
+    }
+
+    internal void Enrage()
+    {
+        AttackDamage += 4;
+        Raged = true;
+
+        Timer.Register(8f, () =>
+        {
+            AttackDamage -= 4;
+            Raged = false;
+        });
     }
 }

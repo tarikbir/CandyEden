@@ -1,9 +1,8 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AbilitySlotController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class AbilitySlotController : MonoBehaviour, IAbilityTooltip
 {
     public Ability SlottedAbility;
 
@@ -12,6 +11,8 @@ public class AbilitySlotController : MonoBehaviour, IPointerEnterHandler, IPoint
     [SerializeField] private TextMeshProUGUI _cooldownText;
 
     private Sprite _defaultSprite;
+
+    public Ability Ability => SlottedAbility;
 
     private void Awake()
     {
@@ -43,19 +44,6 @@ public class AbilitySlotController : MonoBehaviour, IPointerEnterHandler, IPoint
         else
         {
             _slotImage.sprite = _defaultSprite;
-        }
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        UIControl.Instance.Tooltip.Hide();
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        if (SlottedAbility != null)
-        {
-            UIControl.Instance.Tooltip.ShowWithText(SlottedAbility.Name, SlottedAbility.Description);
         }
     }
 }

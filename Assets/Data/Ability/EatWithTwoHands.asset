@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: EatWithTwoHands
   m_EditorClassIdentifier: 
   Name: Eat With Two Hands
-  Description: '<b>Active:</b> Deal <color=red>6 / 10</color> damage to target if
-    this is equipped in left / right hand.
+  Description: '<u>Active:</u> Deal <color=red>6 / 10</color> damage to target by
+    equipped hand.
 
-    <b>Passive:</b> Deal <color=red>2</color>
-    damage to a random enemy each time an ability is used.'
+    <u>Passive:</u> Deal <color=red>2</color> damage to a random
+    enemy each time an ability is used.'
   Icon: {fileID: 21300000, guid: aeed7f037f249c447a0462f8d6508559, type: 3}
   Tier: 0
   TriggerType: 2
   Cooldown: 1.4
+  CanActivateWithoutTarget: 0
   ActivationMethod: 2

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AbilityPickerItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class AbilityPickerItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IAbilityTooltip
 {
     public Ability PickedAbility;
 
@@ -14,6 +14,8 @@ public class AbilityPickerItem : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     private CanvasGroup _canvasGroup;
     private Vector2 _startPosition;
     private Sprite _defaultSprite;
+
+    public Ability Ability => PickedAbility;
 
     private void Awake()
     {

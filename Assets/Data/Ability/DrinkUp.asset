@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: DrinkUp
   m_EditorClassIdentifier: 
   Name: Drink Up
-  Description: '<b>Active:</b> Increase your maximum health and sugar by <color:red>20</color>.
+  Description: '<u>Active:</u> Increase your maximum health and sugar by <color=red>20</color>.
 
-    <b>Passive:</b>
-    Increase your health and sugar by <color:red>10</color> when you get hit.'
+    <u>Passive:</u>
+    Increase your health and sugar by <color=red>10</color> when you get hit.'
   Icon: {fileID: 21300000, guid: ceab9e3b4e00dcf44a9827d9151736d9, type: 3}
   Tier: 1
   TriggerType: 1

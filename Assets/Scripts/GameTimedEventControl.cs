@@ -4,7 +4,7 @@ using UnityTimer;
 public class GameTimedEventControl : SingletonMB<GameTimedEventControl>
 {
     public float SecondsInterval = 10f;
-    
+
     private Timer _eventTimer;
 
     void Start()
@@ -24,8 +24,6 @@ public class GameTimedEventControl : SingletonMB<GameTimedEventControl>
         EventControl.Instance.OnTimedEvent.Dispatch();
 
         GameManager.Instance.PauseTimers();
-
-        //do something
     }
 
     private void UpdateText(float time = 0)

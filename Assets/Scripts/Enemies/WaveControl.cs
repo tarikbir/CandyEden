@@ -70,4 +70,12 @@ public class WaveControl : SingletonMB<WaveControl>
         CurrentMonsters.Add(monster);
         //Debug.Log($"Spawning {monster.name} at {spawnPosition}");
     }
+
+    internal void EnableRagingMonsters()
+    {
+        foreach (var monster in CurrentMonsters)
+        {
+            monster.Enrage();
+        }
+    }
 }

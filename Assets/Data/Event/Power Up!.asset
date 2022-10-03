@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Power Up!
   m_EditorClassIdentifier: 
   Name: Power Up!
-  Description: You start weightlifting out of nowhere. You gain a permanent bonus
-    to your power.
+  Description: You start weightlifting out of nowhere!
   CardImage: {fileID: 21300000, guid: 2e4ccb7e46fcadb4db8ff967c5ee370b, type: 3}
   EventType: 3
   IsOneOfAKind: 0

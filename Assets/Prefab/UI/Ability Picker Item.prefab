@@ -164,6 +164,7 @@ GameObject:
   - component: {fileID: 5334815645987644410}
   - component: {fileID: 8685190700404459508}
   - component: {fileID: 4906268528465951790}
+  - component: {fileID: 7349855879253637789}
   m_Layer: 5
   m_Name: Ability Picker Item
   m_TagString: Untagged
@@ -226,3 +227,15 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &7349855879253637789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5099867897533650987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ab1295f7584e3b4ba092b4db77419f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pick One
   m_EditorClassIdentifier: 
   Name: Pick One!
-  Description: Pick an ability to learn.
+  Description: Gain a new ability! How fun!
   CardImage: {fileID: 21300000, guid: b6fe6b120f2baad478e62df9b9651bfc, type: 3}
   EventType: 0
   IsOneOfAKind: 0

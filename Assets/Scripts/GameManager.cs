@@ -11,6 +11,7 @@ public class GameManager : SingletonMB<GameManager>
     public GameSettings Settings;
 
     public List<AbilityData> AllAbilityList;
+    public List<TimedEventData> AllEventList;
 
     private void Start()
     {
@@ -29,24 +30,51 @@ public class GameManager : SingletonMB<GameManager>
         Mode = GameMode.Fight;
     }
 
-    public AbilityData GetRandomAbilityData(int tier = 0)
+    public AbilityData GetRandomAbilityData(int tier = 1)
     {
-        return GetRandomAbilityData(1, tier).FirstOrDefault();
+        return GetRandomAbilityData(1, tier)[0];
     }
 
-    public IEnumerable<AbilityData> GetRandomAbilityData(int amount, int tier = 0)
+    public List<AbilityData> GetRandomAbilityData(int amount, int tier = 1)
     {
-        return AllAbilityList.Where(a => a.Tier <= tier).OrderBy(a => Random.Range(0, AllAbilityList.Count)).Take(amount);
+        List<AbilityData> list = AllAbilityList.Where(a => a.Tier == tier).OrderBy(a => Random.Range(0, AllAbilityList.Count)).Take(amount).ToList();
+        foreach (var item in list)
+        {
+            AllAbilityList.Remove(item);
+        }
+        return list;
+    }
+
+    public TimedEventData GetRandomEventData()
+    {
+        var gotEvent = AllEventList.OrderBy(e => Random.Range(0, AllEventList.Count)).Take(1).FirstOrDefault();
+        if (gotEvent.IsOneOfAKind)
+        {
+            AllEventList.Remove(gotEvent);
+        }
+        return gotEvent;
     }
 
     public void WinGame()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 
     public void LoseGame()
     {
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
+    }
+
+    internal void TogglePause()
+    {
+        if (Mode == GameMode.Pause && !EventRevealer.IsRevealing)
+        {
+            ResumeTimers();
+        }
+        else
+        {
+            PauseTimers();
+        }
     }
 
     public enum GameMode

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RAGE
   m_EditorClassIdentifier: 
   Name: RAGE!
-  Description: Monsters enrage! Their damage increases and they look uglier!
+  Description: Monster damage increases and they look uglier!
   CardImage: {fileID: 21300000, guid: c511f97368b391e4698484e4e5bf91e9, type: 3}
   EventType: 1
   IsOneOfAKind: 0

@@ -68,16 +68,23 @@ public class PlayerControl : SingletonMB<PlayerControl>
             }
             else if (Input.GetMouseButtonDown(1))
             {
-                Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
+                if (Abilities[1] != null && Abilities[1].IsReady)
                 {
-                    if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
+                    if (Abilities[1].Data.CanActivateWithoutTarget)
                     {
-                        if (Abilities[1] != null && Abilities[1].IsReady)
+                        Abilities[1].Activate();
+                    }
+                    else
+                    {
+                        Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+                        RaycastHit hit;
+
+                        if (Physics.Raycast(ray, out hit))
                         {
-                            Abilities[1].Activate(enemy);
+                            if (hit.collider.TryGetComponent<Enemy>(out Enemy enemy))
+                            {
+                                Abilities[1].Activate(enemy);
+                            }
                         }
                     }
                 }
@@ -88,9 +95,9 @@ public class PlayerControl : SingletonMB<PlayerControl>
         {
             UIControl.Instance.ToggleAbilityPanel();
         }
-        else if (Input.GetKeyDown(KeyCode.LeftControl))
+        else if (Input.GetKeyDown(KeyCode.P))
         {
-            GameManager.Instance.ResumeTimers();
+            GameManager.Instance.TogglePause();
         }
         else if (Input.GetKeyDown(KeyCode.H))
         {
@@ -197,7 +204,8 @@ public class PlayerControl : SingletonMB<PlayerControl>
         Power += 20;
         IsSugarRush = true;
         _decreaseAmount = 100f / _sugarRushDuration;
-        StartCoroutine(_cameraShake.Shake(_sugarRushDuration, .8f));
+        StartCoroutine(_cameraShake.Shake(_sugarRushDuration, .5f));
+        AudioControl.Instance.PlaySound("SugarRush");
     }
 
     private float _decreaseAmount;
