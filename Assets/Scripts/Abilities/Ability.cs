@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine.XR;
 using UnityTimer;
@@ -277,16 +278,17 @@ public class EyeMethod : AbilityMethod
     public override void Invoke(ControlType controlType, Enemy enemy = null)
     {
         float currentPower = Power + PlayerControl.Instance.Power;
+        List<Enemy> enemyCache = new List<Enemy>(WaveControl.Instance.CurrentMonsters);
         if (controlType == ControlType.Passive)
         {
-            foreach (var monster in WaveControl.Instance.CurrentMonsters)
+            foreach (var monster in enemyCache)
             {
                 monster.GetDamage(currentPower * 2);
             }
         }
         else
         {
-            foreach (var monster in WaveControl.Instance.CurrentMonsters)
+            foreach (var monster in enemyCache)
             {
                 if (monster.GetDamage(currentPower))
                 {

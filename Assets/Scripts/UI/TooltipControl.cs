@@ -21,6 +21,7 @@ public class TooltipControl : MonoBehaviour
 
     public void ShowWithText(string title, string description)
     {
+        if (GameManager.Instance.Settings.EnableTooltipPauseGame) GameManager.Instance.PauseTimers(true);
         _titleText.text = title;
         _descriptionText.text = description;
         _uiWindow.Open();
@@ -29,5 +30,6 @@ public class TooltipControl : MonoBehaviour
     public void Hide()
     {
         _uiWindow.Close();
+        if (GameManager.Instance.Settings.EnableTooltipPauseGame) GameManager.Instance.ResumeTimers(true);
     }
 }

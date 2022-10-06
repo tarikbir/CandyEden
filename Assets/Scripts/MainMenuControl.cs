@@ -25,4 +25,10 @@ public class MainMenuControl : MonoBehaviour
         MenuSounds.PlayOneShot(ClickSound);
         SettingsAsset.EnableThrowingCandies = enable;
     }
+
+    public void EnableTooltipPause(bool enable)
+    {
+        MenuSounds.PlayOneShot(ClickSound);
+        SettingsAsset.EnableTooltipPauseGame = enable;
+    }
 }

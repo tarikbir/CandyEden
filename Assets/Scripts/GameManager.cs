@@ -18,14 +18,16 @@ public class GameManager : SingletonMB<GameManager>
         Mode = GameMode.Fight;
     }
 
-    public void PauseTimers()
+    public void PauseTimers(bool checkReveal = false)
     {
+        if (checkReveal && EventRevealer.IsRevealing) return;
         Timer.PauseAllRegisteredTimers();
         Mode = GameMode.Pause;
     }
 
-    public void ResumeTimers()
+    public void ResumeTimers(bool checkReveal = false)
     {
+        if (checkReveal && EventRevealer.IsRevealing) return;
         Timer.ResumeAllRegisteredTimers();
         Mode = GameMode.Fight;
     }
@@ -37,12 +39,7 @@ public class GameManager : SingletonMB<GameManager>
 
     public List<AbilityData> GetRandomAbilityData(int amount, int tier = 1)
     {
-        List<AbilityData> list = AllAbilityList.Where(a => a.Tier == tier).OrderBy(a => Random.Range(0, AllAbilityList.Count)).Take(amount).ToList();
-        foreach (var item in list)
-        {
-            AllAbilityList.Remove(item);
-        }
-        return list;
+        return AllAbilityList.Where(a => a.Tier == tier).OrderBy(a => Random.Range(0, AllAbilityList.Count)).Take(amount).ToList();
     }
 
     public TimedEventData GetRandomEventData()
@@ -65,15 +62,15 @@ public class GameManager : SingletonMB<GameManager>
         SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 
-    internal void TogglePause()
+    internal void TogglePause(bool checkReveal = false)
     {
-        if (Mode == GameMode.Pause && !EventRevealer.IsRevealing)
+        if (Mode == GameMode.Pause)
         {
-            ResumeTimers();
+            ResumeTimers(checkReveal);
         }
         else
         {
-            PauseTimers();
+            PauseTimers(checkReveal);
         }
     }
 

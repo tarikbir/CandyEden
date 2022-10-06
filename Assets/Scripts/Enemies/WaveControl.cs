@@ -47,8 +47,9 @@ public class WaveControl : SingletonMB<WaveControl>
             return;
         }
 
-        float minimum = _currentWave / 5f;
-        int amount = (int) Random.Range(minimum + 1f, 4f);
+        float minimum = (_currentWave / 6f) + 1;
+        float maximum = (_currentWave / 4f) + 1;
+        int amount = (int) Random.Range(minimum, maximum);
         for (int i = 0; i < amount; i++)
         {
             SpawnMonsters();

@@ -5,4 +5,5 @@
 public class GameSettings : ScriptableObject
 {
     public bool EnableThrowingCandies;
+    public bool EnableTooltipPauseGame;
 }

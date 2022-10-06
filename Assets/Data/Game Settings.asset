@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Game Settings
   m_EditorClassIdentifier: 
   EnableThrowingCandies: 1
+  EnableTooltipPauseGame: 1

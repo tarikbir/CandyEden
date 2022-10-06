@@ -97,7 +97,7 @@ public class PlayerControl : SingletonMB<PlayerControl>
         }
         else if (Input.GetKeyDown(KeyCode.P))
         {
-            GameManager.Instance.TogglePause();
+            GameManager.Instance.TogglePause(true);
         }
         else if (Input.GetKeyDown(KeyCode.H))
         {

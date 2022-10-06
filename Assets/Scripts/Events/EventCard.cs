@@ -43,6 +43,13 @@ public class EventCard : MonoBehaviour
                     abilityUI.Open();
                     return true;
                 }
+                else if (abilities.Count == 1)
+                {
+                    PlayerControl.Instance.GainAbility(new Ability(abilities[0]));
+                    var pickoneevent = GameManager.Instance.AllEventList.Where(e => e.EventType == TimedEventType.PickAbility).FirstOrDefault();
+                    GameManager.Instance.AllEventList.Remove(pickoneevent);
+                    return false;
+                }
                 return false;
             case TimedEventType.RageMonsters:
                 WaveControl.Instance.EnableRagingMonsters();
